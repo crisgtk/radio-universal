@@ -1,0 +1,13 @@
+{
+  "name": "@radio-universal/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "@radio-universal/shared": "*"
+  }
+}

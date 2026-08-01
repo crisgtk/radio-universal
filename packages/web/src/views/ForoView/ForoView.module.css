@@ -1,0 +1,166 @@
+.forumHeader {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forumGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.formCard {
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 100px;
+}
+
+.formTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.formLabel {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.formInput, .formTextarea {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.formInput:focus, .formTextarea:focus {
+  outline: none;
+  border-color: var(--primary-green-light);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.formTextarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.commentCard {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.commentCard:hover {
+  border-color: var(--primary-green-light);
+}
+
+.commentMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.authorBox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+.authorName {
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.locationTag {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.timeTag {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.commentBody {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.alertBox {
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alertSuccess {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid var(--primary-green);
+  color: #A7F3D0;
+}
+
+.alertWarning {
+  background: rgba(255, 179, 0, 0.15);
+  border: 1px solid var(--accent-gold);
+  color: #FDE68A;
+}
+
+@media (max-width: 850px) {
+  .forumGrid {
+    grid-template-columns: 1fr;
+  }
+  .formCard {
+    position: static;
+  }
+}

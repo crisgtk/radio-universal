@@ -1,0 +1,166 @@
+.headerBanner {
+  background: linear-gradient(135deg, rgba(229, 57, 53, 0.2) 0%, rgba(27, 94, 32, 0.3) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.bannerLogo {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+}
+
+.bannerText {
+  flex: 1;
+}
+
+.bannerTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.bannerSub {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.filterRow {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.filterBtn {
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  border-color: var(--primary-green-light);
+  color: #FFF;
+}
+
+.activeFilterBtn {
+  background: var(--primary-green);
+  border-color: var(--primary-green-light);
+  color: #FFF;
+}
+
+.activitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.75rem;
+}
+
+.activityCard {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.activityCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-green-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cardHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.dateBadge {
+  background: rgba(229, 57, 53, 0.15);
+  border: 1px solid var(--accent-red);
+  color: #FCA5A5;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.actTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+}
+
+.rolesBox {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.roleItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+
+.roleLabel {
+  color: var(--text-dim);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.roleValue {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.noticesBox {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  background: rgba(76, 175, 80, 0.08);
+  border-left: 3px solid var(--primary-green-light);
+  padding: 0.75rem 1rem;
+  border-radius: 0 6px 6px 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .headerBanner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .activitiesGrid {
+    grid-template-columns: 1fr;
+  }
+}

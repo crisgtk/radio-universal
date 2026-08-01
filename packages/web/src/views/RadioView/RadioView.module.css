@@ -1,0 +1,199 @@
+.heroSection {
+  background: linear-gradient(135deg, rgba(27, 94, 32, 0.4) 0%, rgba(10, 17, 12, 0.95) 100%),
+              url('/logo.jpeg') no-repeat right 5% center / contain;
+  border-bottom: 1px solid var(--border-color);
+  padding: 4rem 0 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContent {
+  max-width: 750px;
+}
+
+.heroTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid var(--border-color-strong);
+  color: var(--primary-green-light);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.heroSub {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dayTabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.dayTabBtn {
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.dayTabBtn:hover {
+  border-color: var(--primary-green-light);
+  color: #FFFFFF;
+}
+
+.activeDayTabBtn {
+  background: var(--primary-green);
+  border-color: var(--primary-green-light);
+  color: #FFFFFF;
+  box-shadow: var(--glow-green);
+}
+
+.programGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.programCard {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.programCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-green-light);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.currentLiveCard {
+  border: 2px solid var(--accent-red);
+  box-shadow: var(--glow-red);
+  position: relative;
+}
+
+.cardTimeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.timeBadge {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary-green-light);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cardProgTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.4rem;
+}
+
+.cardProgHost {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cardProgDesc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.bannersContainer {
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.bannerCard {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(27, 94, 32, 0.3) 100%);
+  border: 1px solid var(--border-color-strong);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  .programGrid {
+    grid-template-columns: 1fr;
+  }
+  .bannerCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

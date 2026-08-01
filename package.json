@@ -1,0 +1,23 @@
+{
+  "name": "radio-universal-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=packages/web",
+    "build": "npm run build --workspace=packages/web",
+    "test": "npm run test --workspace=packages/shared",
+    "preview": "npm run preview --workspace=packages/web"
+  },
+  "keywords": [
+    "radio",
+    "streaming",
+    "lomas-coloradas",
+    "react",
+    "typescript"
+  ],
+  "author": "Radio Universal de Lomas Coloradas",
+  "license": "MIT"
+}

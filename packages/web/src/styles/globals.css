@@ -1,0 +1,181 @@
+/* Variables de Color y Sistema de Diseño */
+:root {
+  /* Paleta Extraída de Logos: Radio Universal (Verde) e Iglesia (Verde, Cruz Roja, Antorcha Azul/Oro) */
+  --primary-green: #2E7D32;
+  --primary-green-light: #4CAF50;
+  --primary-green-dark: #1B5E20;
+  --primary-emerald: #10B981;
+  
+  --accent-red: #E53935;
+  --accent-red-hover: #C62828;
+
+  --accent-gold: #FFB300;
+  --accent-blue: #1E88E5;
+
+  /* Fondos Oscuros Elegantes (Dark Glassmorphism) */
+  --bg-dark-base: #0A110C;
+  --bg-dark-surface: #121E16;
+  --bg-dark-card: #18281D;
+  --bg-dark-card-hover: #203527;
+
+  --border-color: rgba(76, 175, 80, 0.2);
+  --border-color-strong: rgba(76, 175, 80, 0.4);
+
+  /* Texto */
+  --text-main: #F0FDF4;
+  --text-muted: #A7F3D0;
+  --text-dim: #6EE7B7;
+
+  /* Sombras y Resplandores */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --glow-green: 0 0 20px rgba(76, 175, 80, 0.35);
+  --glow-red: 0 0 15px rgba(229, 57, 53, 0.4);
+
+  /* Tipografía */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark-base);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-green);
+}
+
+/* Botones Primarios */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+  color: #FFFFFF;
+  border: 1px solid var(--primary-green-light);
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--primary-green) 100%);
+  box-shadow: var(--glow-green);
+  transform: translateY(-1.5px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(76, 175, 80, 0.15);
+  border-color: var(--primary-green-light);
+  color: #FFFFFF;
+}
+
+.btn-danger {
+  background: var(--accent-red);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: var(--accent-red-hover);
+  box-shadow: var(--glow-red);
+}
+
+/* Badges */
+.badge-live {
+  background: var(--accent-red);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: pulseLive 2s infinite;
+}
+
+@keyframes pulseLive {
+  0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(229, 57, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+}
+
+.badge-tag {
+  background: rgba(76, 175, 80, 0.15);
+  color: var(--primary-green-light);
+  border: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section-padding {
+  padding: 3rem 0;
+}

@@ -1,0 +1,151 @@
+.loginContainer {
+  max-width: 440px;
+  margin: 3rem auto;
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.loginLogo {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.adminHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+}
+
+.userBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tabsBar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.adminTabBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.65rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.adminTabBtn:hover {
+  background: rgba(76, 175, 80, 0.12);
+  color: #FFF;
+}
+
+.activeAdminTabBtn {
+  background: var(--primary-green);
+  color: #FFF;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.metricCard {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metricVal {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.metricLabel {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.configCard {
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.adminTable th {
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--primary-green-light);
+  padding: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.adminTable td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .adminHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
