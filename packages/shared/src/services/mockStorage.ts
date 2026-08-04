@@ -20,7 +20,7 @@ const STORAGE_KEYS = {
 
 export const DEFAULT_STREAM_CONFIG: StreamConfig = {
   provider: 'listen2myradio',
-  primaryUrl: 'https://radio-proxy.autoimportaspa.workers.dev/', // Proxy SSL estable creado en Cloudflare Workers
+  primaryUrl: 'https://uk15freenew.listen2myradio.com/live.mp3?typeportmount=s1_31401_stream_222017896', // Proxy SSL oficial e interno de Listen2MyRadio
   backupUrl: '',
   serverPort: '31401',
   mountPoint: '/;stream',
