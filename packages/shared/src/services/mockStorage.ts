@@ -20,7 +20,7 @@ const STORAGE_KEYS = {
 
 export const DEFAULT_STREAM_CONFIG: StreamConfig = {
   provider: 'listen2myradio',
-  primaryUrl: 'http://37.157.242.101:31401/;stream', // URL directa obtenida del panel (IP: 37.157.242.101, Puerto: 31401)
+  primaryUrl: 'https://radio-proxy.autoimportaspa.workers.dev/', // Proxy SSL estable creado en Cloudflare Workers
   backupUrl: '',
   serverPort: '31401',
   mountPoint: '/;stream',
