@@ -20,14 +20,14 @@ const STORAGE_KEYS = {
 
 export const DEFAULT_STREAM_CONFIG: StreamConfig = {
   provider: 'listen2myradio',
-  primaryUrl: 'https://stream.zeno.fm/f3wvbbqmdg8uv', // Fallback stream stream radio live online
-  backupUrl: 'https://stream.caster.fm/listen2myradio_backup',
-  serverPort: '8000',
-  mountPoint: '/live',
+  primaryUrl: 'http://37.157.242.101:31401/;stream', // URL directa obtenida del panel (IP: 37.157.242.101, Puerto: 31401)
+  backupUrl: '',
+  serverPort: '31401',
+  mountPoint: '/;stream',
   radioTitle: 'Radio Universal de Lomas Coloradas - 100% Cristiana',
   isLive: true,
   autoConnect: true,
-  listenersCount: 42
+  listenersCount: 0
 };
 
 export const INITIAL_PROGRAMS: ProgramSchedule[] = [
