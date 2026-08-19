@@ -14,8 +14,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ streamConfig, programs
   const [volume, setVolume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
   const [currentProgram, setCurrentProgram] = useState<ProgramSchedule | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const timeoutRef = useRef<any>(null);
 
   // Update current program periodically
   useEffect(() => {
@@ -36,14 +38,56 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ streamConfig, programs
     }
   }, [volume, isMuted]);
 
+  const resetAudio = () => {
+    if (audioRef.current) {
+      try {
+        audioRef.current.pause();
+        audioRef.current.removeAttribute('src');
+        audioRef.current.load();
+      } catch (e) {
+        console.error('Error resetting audio element:', e);
+      }
+    }
+  };
+
+  const clearLoadTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      clearLoadTimeout();
+      resetAudio();
+    };
+  }, []);
+
   const togglePlay = () => {
     if (!audioRef.current) return;
 
+    clearLoadTimeout();
+
     if (isPlaying) {
-      audioRef.current.pause();
+      resetAudio();
       setIsPlaying(false);
+      setIsLoading(false);
+      setErrorMsg(null);
     } else {
       setIsLoading(true);
+      setErrorMsg(null);
+
+      // Connection timeout (12 seconds)
+      timeoutRef.current = setTimeout(() => {
+        console.warn('Streaming connection timeout reached.');
+        setErrorMsg('Tiempo de espera agotado. El servidor está lleno o fuera del aire.');
+        resetAudio();
+        setIsPlaying(false);
+        setIsLoading(false);
+      }, 12000);
+
       // Add timestamp query parameter to bypass cache and get fresh live stream
       const streamUrl = `${streamConfig.primaryUrl}${streamConfig.primaryUrl.includes('?') ? '&' : '?'}cb=${Date.now()}`;
       audioRef.current.src = streamUrl;
@@ -51,19 +95,36 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ streamConfig, programs
       audioRef.current
         .play()
         .then(() => {
+          clearLoadTimeout();
           setIsPlaying(true);
           setIsLoading(false);
+          setErrorMsg(null);
         })
         .catch((err) => {
+          clearLoadTimeout();
           console.warn('Primary stream failed, attempting backup audio...', err);
-          // Fallback to sample stream if live server is offline in local dev
+          
           if (audioRef.current && streamConfig.backupUrl) {
             audioRef.current.src = streamConfig.backupUrl;
-            audioRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+            audioRef.current
+              .play()
+              .then(() => {
+                setIsPlaying(true);
+                setIsLoading(false);
+              })
+              .catch((backupErr) => {
+                console.error('Backup stream also failed:', backupErr);
+                setErrorMsg('No se pudo conectar a la transmisión de respaldo.');
+                resetAudio();
+                setIsPlaying(false);
+                setIsLoading(false);
+              });
           } else {
+            setErrorMsg('Transmisión no disponible. El servidor está lleno o fuera del aire.');
+            resetAudio();
             setIsPlaying(false);
+            setIsLoading(false);
           }
-          setIsLoading(false);
         });
     }
   };
@@ -80,14 +141,27 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ streamConfig, programs
     <div className={styles.playerBar}>
       <audio
         ref={audioRef}
-        onWaiting={() => setIsLoading(true)}
+        onWaiting={() => {
+          if (isPlaying) {
+            setIsLoading(true);
+          }
+        }}
         onPlaying={() => {
+          clearLoadTimeout();
           setIsLoading(false);
           setIsPlaying(true);
+          setErrorMsg(null);
         }}
         onError={() => {
+          // If we intentionally reset src, it will trigger an error event. Ignore it.
+          if (!audioRef.current || !audioRef.current.src || audioRef.current.src === window.location.href) {
+            return;
+          }
+          clearLoadTimeout();
           setIsLoading(false);
           setIsPlaying(false);
+          setErrorMsg('Error en la transmisión. Servidor lleno o desconectado.');
+          resetAudio();
         }}
       />
       <div className={`container ${styles.playerContainer}`}>
@@ -96,16 +170,33 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ streamConfig, programs
             <Radio size={24} />
           </div>
           <div className={styles.textGroup}>
-            <span className={styles.nowPlayingLabel}>
-              <span className="badge-live">EN VIVO</span>
-              {streamConfig.provider.toUpperCase()}
-            </span>
-            <span className={styles.programTitle}>
-              {currentProgram ? currentProgram.title : 'Programación Continuada'}
-            </span>
-            <span className={styles.programHost}>
-              {currentProgram ? `Locutor: ${currentProgram.host}` : streamConfig.radioTitle}
-            </span>
+            {errorMsg ? (
+              <>
+                <span className={styles.nowPlayingLabelError}>
+                  <span className={styles.badgeOffline}>FUERA DEL AIRE</span>
+                  {streamConfig.provider.toUpperCase()}
+                </span>
+                <span className={styles.programTitleError}>
+                  Transmisión No Disponible
+                </span>
+                <span className={styles.programHost} title={errorMsg}>
+                  {errorMsg}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className={styles.nowPlayingLabel}>
+                  <span className="badge-live">EN VIVO</span>
+                  {streamConfig.provider.toUpperCase()}
+                </span>
+                <span className={styles.programTitle}>
+                  {currentProgram ? currentProgram.title : 'Programación Continuada'}
+                </span>
+                <span className={styles.programHost}>
+                  {currentProgram ? `Locutor: ${currentProgram.host}` : streamConfig.radioTitle}
+                </span>
+              </>
+            )}
           </div>
         </div>
 
