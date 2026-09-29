@@ -18,7 +18,11 @@ import { IglesiaView } from './views/IglesiaView/IglesiaView';
 import { RadioView } from './views/RadioView/RadioView';
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('radio');
+  const [activeTab, setActiveTab] = useState<ActiveTab>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get('tab') as ActiveTab;
+    return ['radio', 'foro', 'iglesia', 'historial', 'admin'].includes(tabParam) ? tabParam : 'radio';
+  });
 
   // Shared state with persistence
   const [streamConfig, setStreamConfig] = useState<StreamConfig>(() => mockStorage.getStreamConfig());

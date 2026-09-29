@@ -59,12 +59,22 @@ export const AdminView: React.FC<AdminViewProps> = ({
   interruptions,
   onSaveInterruptions
 }) => {
-  const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
+  const [currentUser, setCurrentUser] = useState<AdminUser | null>(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('autologin') === 'admin') {
+      return INITIAL_USERS[0];
+    }
+    return null;
+  });
   const [usernameInput, setUsernameInput] = useState('admin');
   const [passwordInput, setPasswordInput] = useState('');
   const [loginError, setLoginError] = useState('');
 
-  const [activeAdminTab, setActiveAdminTab] = useState<AdminTab>('dashboard');
+  const [activeAdminTab, setActiveAdminTab] = useState<AdminTab>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sub = params.get('subtab') as AdminTab;
+    return ['dashboard', 'streaming', 'cortes', 'programas', 'actividades', 'foro'].includes(sub) ? sub : 'dashboard';
+  });
 
   // Form states for stream config
   const [configForm, setConfigForm] = useState<StreamConfig>({ ...streamConfig });
